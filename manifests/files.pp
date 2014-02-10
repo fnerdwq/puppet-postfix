@@ -1,3 +1,4 @@
+# class configuring postfix config files (private)
 class postfix::files {
   include postfix::params
 
@@ -15,6 +16,7 @@ class postfix::files {
   $use_dovecot_lda     = $postfix::use_dovecot_lda
   $use_schleuder       = $postfix::use_schleuder
   $use_sympa           = $postfix::use_sympa
+  $content_filter      = $postfix::content_filter
 
   File {
     replace => $manage_conffiles,
@@ -77,6 +79,12 @@ class postfix::files {
     'alias_maps':       value => $alias_maps;
     'inet_interfaces':  value => $inet_interfaces;
     'myorigin':         value => $myorigin;
+  }
+
+  if $content_filter {
+    ::postfix::config {
+      'content_filter': value => $content_filter
+    }
   }
 
   case $::osfamily {
