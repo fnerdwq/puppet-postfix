@@ -38,8 +38,6 @@ define postfix::virtual (
   $file='/etc/postfix/virtual',
   $ensure='present'
 ) {
-  include postfix::augeas
-
   validate_string($destination)
   validate_string($file)
   validate_absolute_path($file)
@@ -67,10 +65,7 @@ define postfix::virtual (
     incl    => $file,
     lens    => 'Postfix_Virtual.lns',
     changes => $changes,
-    require => [
-      Package['postfix'],
-      Augeas::Lens['postfix_virtual'],
-      ],
+    require => Package['postfix'],
     notify  => Postfix::Hash['/etc/postfix/virtual'],
   }
 }

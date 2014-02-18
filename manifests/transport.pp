@@ -39,8 +39,6 @@ define postfix::transport (
   $file='/etc/postfix/transport',
   $ensure='present'
 ) {
-  include postfix::augeas
-
   validate_string($destination)
   validate_string($nexthop)
   validate_string($file)
@@ -81,10 +79,7 @@ define postfix::transport (
     lens    => 'Postfix_Transport.lns',
     incl    => $file,
     changes => $changes,
-    require => [
-      Package['postfix'],
-      Augeas::Lens['postfix_transport'],
-      ],
+    require => Package['postfix'],
     notify  => Postfix::Hash['/etc/postfix/transport'],
   }
 }
