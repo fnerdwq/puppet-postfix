@@ -13,6 +13,7 @@ class postfix::files {
   $root_mail_recipient = $postfix::root_mail_recipient
   $smtp_listen         = $postfix::_smtp_listen
   $use_amavisd         = $postfix::use_amavisd
+  $amavisd_maxproc     = $postfix::amavisd_maxproc
   $use_dovecot_lda     = $postfix::use_dovecot_lda
   $use_schleuder       = $postfix::use_schleuder
   $use_sympa           = $postfix::use_sympa

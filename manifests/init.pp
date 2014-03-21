@@ -53,6 +53,8 @@
 #
 # [*use_amavisd*]         - (boolean) Whether to setup for Amavis
 #
+# [*amavisd_maxproc*]     - (boolean) Maximum procs for smtp-amavis
+#
 # [*content_filter*]      - (string) usfull in connection with use_amavisd
 #
 # [*use_dovecot_lda*]     - (boolean) Whether to setup for Dovecot LDA
@@ -91,6 +93,7 @@ class postfix (
   $satellite           = false,
   $smtp_listen         = '127.0.0.1',   # postfix_smtp_listen
   $use_amavisd         = false,         # postfix_use_amavisd
+  $amavisd_maxproc     = '2',
   $content_filter      = undef,
   $use_dovecot_lda     = false,         # postfix_use_dovecot_lda
   $use_schleuder       = false,         # postfix_use_schleuder
@@ -125,6 +128,7 @@ class postfix (
     validate_string($root_mail_recipient)
   }
   validate_string($smtp_listen)
+  validate_string($amavisd_maxproc)
   validate_string($content_filter)
 
 
