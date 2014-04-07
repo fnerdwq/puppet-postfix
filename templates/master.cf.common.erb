@@ -17,8 +17,8 @@ localhost:10025 inet n - n - - smtpd
         -o receive_override_options=no_unknown_recipient_checks
 <% end -%>
 <% if @use_dovecot_lda -%>
-dovecot   unix  -       n       n       -       -       pipe
-  flags=DRhu user=<%= @mail_user %>:<%= @mail_user %> argv=/usr/lib/dovecot/deliver -d ${recipient}
+dovecot   unix  -       n       n       -       5       pipe
+  flags=DRhu user=<%= @mail_user %>:<%= @mail_user %> argv=/usr/lib/dovecot/dovecot-lda -f ${sender} -d ${recipient}
 <% end -%>
 <% if @use_schleuder -%>
 schleuder  unix  -       n       n       -       -       pipe
