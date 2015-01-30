@@ -12,6 +12,7 @@ class postfix::files {
   $myorigin            = $postfix::myorigin
   $root_mail_recipient = $postfix::root_mail_recipient
   $smtp_listen         = $postfix::_smtp_listen
+  $master_amavisd      = $postfix::master_amavisd
   $use_amavisd         = $postfix::use_amavisd
   $amavisd_maxproc     = $postfix::amavisd_maxproc
   $use_dovecot_lda     = $postfix::use_dovecot_lda

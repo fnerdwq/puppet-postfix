@@ -51,7 +51,9 @@
 #
 # [*smtp_listen*]         - (string) The SMTP listen interface
 #
-# [*use_amavisd*]         - (boolean) Whether to setup for Amavis
+# [*master_amavisd*]      - (string)
+#
+# [*use_amavisd*]         - (boolean) Whether to setup for Amavis (only valid if master_amavisd unset)
 #
 # [*amavisd_maxproc*]     - (boolean) Maximum procs for smtp-amavis
 #
@@ -92,6 +94,7 @@ class postfix (
   $root_mail_recipient = 'nobody',      # root_mail_recipient
   $satellite           = false,
   $smtp_listen         = '127.0.0.1',   # postfix_smtp_listen
+  $master_amavisd      = undef,         # postfix_master_amavisd
   $use_amavisd         = false,         # postfix_use_amavisd
   $amavisd_maxproc     = '2',
   $content_filter      = undef,
@@ -120,6 +123,7 @@ class postfix (
   validate_string($mastercf_source)
   validate_string($master_smtp)
   validate_string($master_smtps)
+  validate_string($master_amavisd)
   validate_string($mydestination)
   validate_string($mynetworks)
   validate_string($myorigin)
